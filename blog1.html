@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Trends Blogs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff5f8;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: pink;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    
+    /* Blogs */
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .blog-card img {
+      width: 100%;
+      border-radius: 10px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .blog-card h3 {
+      margin: 0.8rem 0 0.4rem;
+    }
+
+    .blog-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      text-decoration: none;
+      color: #fff;
+      background: #ff4081;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .blog-card a:hover {
+      background: #e91e63;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    footer {
+      background: pink;
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1>Vogue Vault - Fashion Trends</h1>
+    <nav>
+      <a href="Homepage.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  
+  
+
+  <!-- Blogs -->
+  <main class="blog-container" id="blog-list"></main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Vogue Vault | All Rights Reserved</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Blog data
+    const blogs = [
+      {
+        title: "Top 10 Fashion Trends 2025",
+        img: "https://i.pinimg.com/736x/ce/2a/37/ce2a379514202ab14461c58afd861ed7.jpg",
+        desc: "Explore the hottest runway looks dominating 2025.",
+        link: "fashiontrends.html"
+      },
+      {
+        title: "Sustainable Fashion: Future of Style",
+        img: "https://i.pinimg.com/736x/3c/ab/63/3cab63239c4e9cb6b41186cef6897f7b.jpg",
+        desc: "Eco-friendly clothing brands redefining the fashion industry.",
+        link: "sustainable_blog.html"
+      },
+      {
+        title: "How to Style Pastel Shades",
+        img: "https://i.pinimg.com/1200x/44/b6/24/44b6241c25804b1d47c0f5b36209f6d3.jpg",
+        desc: "Step-by-step guide to rocking pastel colors effortlessly.",
+        link: "pastelshades.html"
+      },
+      {
+        title: "Luxury Fashion Icons",
+        img: "https://i.pinimg.com/1200x/91/95/e2/9195e26ad660cf3d1ed1cacaf55607b4.jpg",
+        desc: "A deep dive into the timeless luxury fashion statements.",
+        link: "luxury.html"
+      },
+      {
+        title: "Streetwear Culture",
+        img: "https://i.pinimg.com/736x/2f/2e/2e/2f2e2ed63afc7fca1967f94865b1be3f.jpg",
+        desc: "Street fashion that blends comfort with bold designs.",
+        link: "streetwear.html"
+      },
+      {
+        title: "Seasonal Must-Haves",
+        img: "https://i.pinimg.com/736x/81/de/3e/81de3e5b4a1e6121e6f58b9975d886b0.jpg",
+        desc: "Wardrobe essentials you need this season.",
+        link: "seasonal must haves.html"
+      }
+    ];
+
+    const blogList = document.getElementById("blog-list");
+
+    blogs.forEach(blog => {
+      const card = document.createElement("div");
+      card.className = "blog-card";
+      card.innerHTML = `
+        <img src="${blog.img}" alt="${blog.title}">
+        <h3>${blog.title}</h3>
+        <p>${blog.desc}</p>
+        <a href="${blog.link}">Read More</a>
+      `;
+      blogList.appendChild(card);
+    });
+
+  </script>
+</body>
+</html>

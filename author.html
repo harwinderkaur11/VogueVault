@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author - Vogue Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: url('https://i.pinimg.com/originals/7b/24/7b/7b247b30ecc35f4132833ae58837fe07.jpg') no-repeat center center/cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Overlay for readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 240, 245, 0.85);
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(248, 211, 225, 0.9);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(255, 105, 180, 0.1);
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff69b4;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Author Profile Section */
+        .author-profile {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.8);
+        }
+
+        .author-image {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+            background: #ff69b4;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .author-details {
+            flex: 1;
+        }
+
+        .author-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .author-title {
+            font-size: 16px;
+            color: #ff69b4;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .author-bio {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .author-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff69b4;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #f8d3e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            border-color: #ff69b4;
+            color: #ff69b4;
+            transform: scale(1.1);
+        }
+
+        .get-in-touch-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .get-in-touch-btn:hover {
+            background: #e55a9b;
+        }
+
+        /* Recent Articles Section */
+        .recent-articles {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ff69b4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .articles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.8);
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .article-content {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .article-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .external-link {
+            width: 24px;
+            height: 24px;
+            background: #f8d3e1;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff69b4;
+            font-size: 12px;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Join the Conversation Section */
+        .join-conversation {
+            background: #f8d3e1;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .join-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .join-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .join-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #e55a9b;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #ff69b4;
+            border: 2px solid #ff69b4;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #ff69b4;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .author-profile {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+                font-size: 60px;
+                margin: 0 auto;
+            }
+
+            .author-stats {
+                justify-content: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .join-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="brand-name">VOGUE VAULT</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="categories.html">Fashion</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Author Profile Section -->
+        <section class="author-profile">
+            <div class="author-image">
+                <div class="profile-pic"><img src="https://images.english.elpais.com/resizer/v6Qrrnq2Bb3xCnOKFD-wsjtVdOM=/1200x0/filters:focal(3102x1428:3112x1438)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/3BMQNHY2QBHJJHTW4A27ZREA5M.jpg"></div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="author-details">
+                <h2 class="author-name">Isabella Laurent</h2>
+                <p class="author-title">Senior Fashion Editor</p>
+                <p class="author-bio">
+                    With over a decade in fashion journalism, Isabella brings an unparalleled perspective to contemporary style. 
+                    Her work has been featured in leading publications worldwide, and she continues to shape the conversation 
+                    around sustainable luxury and emerging designers.
+                </p>
+                <div class="author-stats">
+                    <div class="stat">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">Articles</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Awards</span>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <div class="social-icon">📷</div>
+                    <div class="social-icon">🐦</div>
+                    <div class="social-icon">💼</div>
+                    <div class="social-icon">✉️</div>
+                </div>
+                <button class="get-in-touch-btn">
+                    ✉️ Get in Touch
+                </button>
+            </div>
+        </section>
+
+        <!-- Recent Articles Section -->
+        <section class="recent-articles">
+            <h2 class="section-title">Recent Articles</h2>
+            <div class="articles-list">
+                <div class="article-card">
+                    <div class="article-content">
+                        <h3 class="article-title">The Renaissance of Sustainable Fashion</h3>
+                        <p class="article-description">
+                            Exploring how luxury brands are embracing eco-conscious design without compromising elegance.
+                        </p>
+                        <p class="article-meta">March 15, 2024 • 5 min read</p>
+                    </div>
+                    <div class="external-link">↗</div>
+                </div>
+                <div class="article-card">
+                    <div class="article-content">
+                        <h3 class="article-title">Deconstructing Paris Fashion Week</h3>
+                        <p class="article-description">
+                            An insider's perspective on the trends that defined this season's most anticipated shows.
+                        </p>
+                        <p class="article-meta">March 8, 2024 • 7 min read</p>
+                    </div>
+                    <div class="external-link">↗</div>
+                </div>
+                <div class="article-card">
+                    <div class="article-content">
+                        <h3 class="article-title">The Art of Minimalist Luxury</h3>
+                        <p class="article-description">
+                            Why less is more in contemporary fashion design and how to master the aesthetic.
+                        </p>
+                        <p class="article-meta">February 28, 2024 • 4 min read</p>
+                    </div>
+                    <div class="external-link">↗</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join the Conversation Section -->
+        <section class="join-conversation">
+            <h2 class="join-title">Join the Conversation</h2>
+            <p class="join-description">
+                Stay updated with the latest in fashion, style insights, and exclusive interviews from the world of luxury design.
+            </p>
+            <div class="join-buttons">
+                <button class="btn-primary">Subscribe to Newsletter</button>
+                <button class="btn-secondary">Explore All Articles</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

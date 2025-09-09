@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Casual Wear – Vogue Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff69b4;
+    --peach:#ffd8e5;
+    --lav:#b49fd9;
+    --bg:#fff7f9;
+    --ink:#333;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:#f8d3e1;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+  }
+  header h1{font-size:22px; color:var(--pink); margin:0;}
+  nav ul{display:flex; list-style:none; gap:22px; padding:0; margin:0;}
+  nav a{color:#333; text-decoration:none; font-weight:600}
+  nav a:hover{color:var(--pink)}
+
+  /* Hero */
+  .hero{
+    position:relative; height:340px; overflow:hidden;
+    border-bottom:1px solid #f2dbe6;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(135deg, #ffeaf2 0%, #f5e6ff 100%);
+  }
+  .hero-track{
+    position:absolute; inset:0; display:flex; width:max-content;
+    animation:slide 30s linear infinite;
+    opacity:.45; filter:saturate(105%);
+  }
+  .hero-track img{
+    width:560px; height:340px; object-fit:cover; flex:0 0 auto;
+  }
+  @keyframes slide{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .hero-text{
+    position:absolute; inset:0; display:grid; place-items:center; text-align:center;
+    padding:0 18px;
+  }
+  .hero-badge{
+    display:inline-block; background:rgba(255,105,180,.15); color:var(--black);
+    padding:6px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.5px;
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .hero h2{font-size:44px; color:var(--black); margin:4px 0 6px}
+  .hero p{color:#555; max-width:760px; margin:0 auto; font-size:16px}
+
+  /* Filters */
+  .filters{
+    max-width:1200px; margin:28px auto 8px; padding:0 20px; display:flex; flex-wrap:wrap; gap:10px;
+    justify-content:center;
+  }
+  .chip{
+    border:2px solid #f1d3e4; background:#fff; color:#555;
+    padding:8px 14px; border-radius:999px; font-weight:600; font-size:14px; cursor:pointer;
+    transition:.25s ease;
+  }
+  .chip:hover{transform:translateY(-1px)}
+  .chip.active{background:var(--pink); border-color:var(--pink); color:#fff}
+
+  /* Gallery */
+  .wrap{max-width:1200px; margin:12px auto 50px; padding:0 20px;}
+  .grid{
+    display:grid; gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  }
+  .card{
+    background:#fff; border-radius:16px; overflow:hidden; position:relative;
+    box-shadow:0 8px 18px rgba(255,182,193,.35);
+    transition:transform .25s ease, box-shadow .25s ease;
+    cursor:pointer;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:0 14px 26px rgba(180,159,217,.35)}
+  .card img{width:100%; height:280px; object-fit:cover; display:block}
+  .caption{
+    padding:12px 14px; font-weight:600; font-size:14px; color:#555;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .tag{
+    font-size:11px; padding:4px 10px; border-radius:999px; background:#efe6ff; color:#6b5aa8; font-weight:700;
+  }
+  .tag.pink{background:#ffe3ef; color:#b4457e}
+  .tag.peach{background:#fff0e2; color:#b7724a}
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(0,0,0,.55);
+    display:none; align-items:center; justify-content:center; z-index:40;
+  }
+  .lightbox.open{display:flex}
+  .viewer{
+    width:min(92vw,980px); background:#fff; border-radius:18px; overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.25); position:relative;
+  }
+  .viewer img{width:100%; height:64vh; object-fit:cover; display:block}
+  .viewer .meta{
+    padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .viewer .meta .cap{font-weight:700; color:#444}
+  .viewer .meta .pill{font-size:12px; background:#f0e6ff; color:#6b5aa8; padding:6px 12px; border-radius:999px; font-weight:700}
+  .ctrl{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.9);
+    display:grid; place-items:center; font-size:20px; font-weight:900; color:#444; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+  }
+  .ctrl:hover{background:#fff}
+  .prev{left:10px} .next{right:10px}
+  .close{
+    position:absolute; top:10px; right:10px; width:38px; height:38px; border-radius:50%;
+    background:#fff; display:grid; place-items:center; font-size:18px; font-weight:900; color:#444;
+    box-shadow:0 6px 18px rgba(0,0,0,.15); cursor:pointer;
+  }
+
+  /* Footer */
+  footer{
+    background:linear-gradient(135deg,#d7a683,#f8d3e1);
+    color:#fff; text-align:center; padding:36px 18px;
+  }
+  footer img{width:26px; margin:0 6px; transition:transform .2s ease}
+  footer img:hover{transform:scale(1.15)}
+
+  /* Small tweaks */
+  @media (max-width:560px){
+    .hero h2{font-size:34px}
+    .hero{height:280px}
+    .hero-track img{height:280px; width:420px}
+    .card img{height:240px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1>Vogue Vault</h1>
+  <nav>
+    <ul>
+      <li><a href="Homepage.html">Home</a></li>
+      <li><a href="newpost2.html">Blogs</a></li>
+      <li><a href="WardrobeGoals.html">Wardrobe</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Pastel Hero with moving strip -->
+<section class="hero" aria-label="Casual Wear">
+  <div class="hero-track" aria-hidden="true">
+    <img src="https://glance-web.glance-cdn.com/people_wearing_high_fashion_clothing_c82d587d7b.jpg" alt="">
+    <img src="https://madameonline.com/cdn/shop/files/eoss_mobile_banner_ef16325c-b73b-410a-aba8-6e7ab7cb28c7.webp?v=1754385780&width=320" alt="">
+    <img src="https://cdn.shopify.com/s/files/1/0269/9644/1191/files/leather_480x480.png?v=1648861040" alt="">
+    <img src="https://cdn.prod.website-files.com/640af9a044ffd036837edf6a/66ded7482e913cd9054f17d8_The%20Closet%20Images%20(13).webp" alt="">
+    <!-- duplicate a few for seamless loop -->
+    <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-2196830043-67eef49211136.jpg?crop=0.668xw:1.00xh;0.210xw,0&resize=1120:*" alt="">
+    <img src="https://cdn.mos.cms.futurecdn.net/z7LDv972HRC2TpuMxVHFwP.jpg" alt="">
+  </div>
+  <div class="hero-text">
+    <span class="hero-badge">Casual Wear Edit</span>
+    <h2>Effortless, Everyday, Elevated</h2>
+    <p>Quick outfit ideas you can copy right now — jeans, tees, easy dresses, cozy layers & co-ords.</p>
+  </div>
+</section>
+
+<!-- Filter chips -->
+<div class="filters">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="tops">Tops</button>
+  <button class="chip" data-filter="jeans">Jeans</button>
+  <button class="chip" data-filter="dresses">Dresses</button>
+  <button class="chip" data-filter="layers">Layers</button>
+  <button class="chip" data-filter="coords">Co-ords</button>
+</div>
+
+<!-- Gallery -->
+<main class="wrap">
+  <section class="grid" id="gallery">
+    <!-- Tops -->
+    <figure class="card" data-cat="tops">
+      <img src="https://i.pinimg.com/736x/50/a6/d8/50a6d8f506f5707c83b0ca229baa2b07.jpg" alt="White tee with linen trousers">
+      <figcaption class="caption"><span>Classic white tee + linen</span><span class="tag">Tops</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="tops">
+      <img src="https://assets.vogue.com/photos/65f1c5cae4e3478417da0515/master/w_1600%2Cc_limit/00005-chloe-fall-2024-ready-to-w.jpeg" alt="Striped tee and denim">
+      <figcaption class="caption"><span>French stripes & light denim</span><span class="tag">Tops</span></figcaption>
+    </figure>
+
+    <!-- Jeans -->
+    <figure class="card" data-cat="jeans">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxu_Dc5bN3mIDTOOxiq2Ks6gWt7YAoTtE0_k7YXmyZrjWSkFqpaaSPeyWgwQUwbzbkx28&usqp=CAU" alt="High-rise straight jeans">
+      <figcaption class="caption"><span>Straight-leg blue jean days</span><span class="tag peach">Jeans</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="jeans">
+      <img src="https://assets.vogue.com/photos/672196f2589d643905e68cc4/master/w_2560%2Cc_limit/Holding.jpg" alt="Denim on denim">
+      <figcaption class="caption"><span>Denim-on-denim, done soft</span><span class="tag peach">Jeans</span></figcaption>
+    </figure>
+
+    <!-- Dresses -->
+    <figure class="card" data-cat="dresses">
+      <img src="https://i.pinimg.com/736x/22/61/c4/2261c4e208ae44298f0781c02bc64baf.jpg" alt="Pastel slip dress">
+      <figcaption class="caption"><span>Pastel slip, sneakers vibe</span><span class="tag pink">Dresses</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="dresses">
+      <img src="https://i.pinimg.com/736x/34/b9/48/34b948c99c26c87ed3ced14d10ad13a0.jpg" alt="Floral day dress">
+      <figcaption class="caption"><span>Floral day dress & sunnies</span><span class="tag pink">Dresses</span></figcaption>
+    </figure>
+
+    <!-- Layers -->
+    <figure class="card" data-cat="layers">
+      <img src="https://images.hellomagazine.com/horizon/original_aspect_ratio/26ad210a9652-vogue-williams-cardi-z.jpg" alt="Oversized cardigan">
+      <figcaption class="caption"><span>Cloud-soft cardigan layer</span><span class="tag">Layers</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="layers">
+      <img src="https://assets.vogue.com/photos/66f832dfb531aa4c6be8a910/16:9/w_2992,h_1683,c_limit/PARIS_SS25_STREETSTYLE_DAY5_PHILOH_15.jpg" alt="Utility jacket with tee">
+      <figcaption class="caption"><span>Utility jacket, weekend tee</span><span class="tag">Layers</span></figcaption>
+    </figure>
+
+    <!-- Co-ords -->
+    <figure class="card" data-cat="coords">
+      <img src="https://media.vogue.co.uk/photos/5f71f79d9590f66bc1d71810/master/pass/GettyImages-1146739191.jpg" alt="Knit co-ord">
+      <figcaption class="caption"><span>Knit co-ord, coffee run</span><span class="tag">Co-ords</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="coords">
+      <img src="https://assets.vogue.in/photos/60b6147bad8d183aa3ed8e7a/4:3/w_1331,h_998,c_limit/Nykd%20All%20Day%20-%20Active%201.jpg" alt="Lounge set">
+      <figcaption class="caption"><span>Lounge set, luxe feel</span><span class="tag">Co-ords</span></figcaption>
+    </figure>
+
+    <!-- More inspo -->
+    <figure class="card" data-cat="tops">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPaARU3wsF3KRLx7i0SO7RPTGngel8dHu5Zg&s" alt="Graphic tee">
+      <figcaption class="caption"><span>Graphic tee, chill energy</span><span class="tag">Tops</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="jeans">
+      <img src="https://img.freepik.com/premium-photo/woman-white-shirt-black-leather-pants-is-walking-down-street_1281144-15375.jpg" alt="Black skinny jeans">
+      <figcaption class="caption"><span>Black skinnies, forever</span><span class="tag peach">Jeans</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="dresses">
+      <img src="https://assets.vogue.com/photos/5d9cb0202d8d1c0008d40e85/master/w_2560%2Cc_limit/GettyImages-1179631577%2520(1).jpg" alt="T-shirt dress">
+      <figcaption class="caption"><span>T-shirt dress + tote</span><span class="tag pink">Dresses</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="layers">
+      <img src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1709288606-SD_01_T49_5133_BT_X_EC_0.jpg?crop=0.867xw:1xh;center,top&resize=980:*" alt="Light trench coat">
+      <figcaption class="caption"><span>Light trench, breezy walk</span><span class="tag">Layers</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="tops">
+      <img src="https://assets.vogue.in/photos/664dbfb892fb60e79585ff8a/master/w_1600%2Cc_limit/Jeans-cargo-camisa-tendencia-street-style.jpg" alt="Cropped tee">
+      <figcaption class="caption"><span>Cropped tee + cargo</span><span class="tag">Tops</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="coords">
+      <img src="https://voguesg.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2022/02/04084112/vogue-off-duty-atheleisure-01-800x1200.jpg" alt="Athleisure set">
+      <figcaption class="caption"><span>Athleisure set, errands</span><span class="tag">Co-ords</span></figcaption>
+    </figure>
+  </section>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="viewer" role="dialog" aria-modal="true">
+    <img id="viewImg" alt="">
+    <div class="meta">
+      <span class="cap" id="viewCap">Caption</span>
+      <span class="pill" id="viewTag">Category</span>
+    </div>
+    <div class="ctrl prev" id="prevBtn" aria-label="Previous">‹</div>
+    <div class="ctrl next" id="nextBtn" aria-label="Next">›</div>
+    <div class="close" id="closeBtn" aria-label="Close">×</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <h3 style="margin:0 0 6px">Vogue Vault</h3>
+  <p style="opacity:.9; margin:0 0 10px">Your stylish destination for fashion, beauty & lifestyle trends.</p>
+  <div>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+  </div>
+  <p style="font-size:13px; opacity:.8; margin-top:8px;">© 2025 Vogue Vault · All Rights Reserved</p>
+</footer>
+
+<script>
+  // ----- FILTERS -----
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.card');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+
+      const f = chip.dataset.filter;
+      cards.forEach(card => {
+        const show = f === 'all' || card.dataset.cat === f;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // ----- LIGHTBOX -----
+  const lightbox = document.getElementById('lightbox');
+  const viewImg  = document.getElementById('viewImg');
+  const viewCap  = document.getElementById('viewCap');
+  const viewTag  = document.getElementById('viewTag');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const gallery  = Array.from(document.querySelectorAll('.card'));
+
+  let idx = 0;
+
+  function openAt(i){
+    idx = i;
+    const fig = gallery[idx];
+    const img = fig.querySelector('img');
+    const cap = fig.querySelector('.caption span').textContent;
+    const tag = fig.dataset.cat;
+
+    viewImg.src = img.src;
+    viewImg.alt = img.alt;
+    viewCap.textContent = cap;
+    viewTag.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeBox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function next(){ idx = (idx + 1) % gallery.length; openAt(idx); }
+  function prev(){ idx = (idx - 1 + gallery.length) % gallery.length; openAt(idx); }
+
+  gallery.forEach((fig,i)=>{
+    fig.addEventListener('click',()=>openAt(i));
+  });
+  closeBtn.addEventListener('click',closeBox);
+  nextBtn.addEventListener('click', (e)=>{e.stopPropagation(); next();});
+  prevBtn.addEventListener('click', (e)=>{e.stopPropagation(); prev();});
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeBox(); });
+
+  // Keyboard support
+  document.addEventListener('keydown', (e)=>{
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeBox();
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft') prev();
+  });
+
+  // ----- LAZY loading hint -----
+  document.querySelectorAll('img').forEach(img=> img.loading = 'lazy');
+</script>
+</body>
+</html>

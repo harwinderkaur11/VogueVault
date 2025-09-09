@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post - Vogue Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fffafc;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #f8d3e1;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255,182,193,0.3);
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #ff69b4;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fef6f9;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(255,182,193,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #b49fd9;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #555;
+            display: block;
+            margin: 15px 0 8px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f3d1e0;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: #ff69b4;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .image-preview {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .image-preview img {
+            width: 150px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(180,159,217,0.3);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background: #ff69b4;
+            color: #fff;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #b49fd9;
+        }
+
+        .preview-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(180,159,217,0.2);
+        }
+
+        .preview-box h3 {
+            color: #ff69b4;
+        }
+
+        .preview-box p {
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .preview-images {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .preview-images img {
+            width: 150px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vogue Vault - New Post</h1>
+    </header>
+
+    <div class="container">
+        <h2>Create a New Blog Post</h2>
+        <form id="postForm">
+            <label for="title">Post Title:</label>
+            <input type="text" id="title" placeholder="Enter your post title" required>
+
+            <label for="content">Post Content:</label>
+            <textarea id="content" placeholder="Write your blog content here..." required></textarea>
+
+            <label for="images">Upload Images:</label>
+            <input type="file" id="images" accept="image/*" multiple>
+            <div class="image-preview" id="imagePreview"></div>
+
+            <button type="button" onclick="previewPost()">Preview Post</button>
+        </form>
+
+        <div class="preview-box" id="previewBox">
+            <h3 id="previewTitle"></h3>
+            <p id="previewContent"></p>
+            <div class="preview-images" id="previewImages"></div>
+        </div>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('images');
+        const imagePreview = document.getElementById('imagePreview');
+
+        imageInput.addEventListener('change', () => {
+            imagePreview.innerHTML = '';
+            const files = imageInput.files;
+            for (let i = 0; i < files.length; i++) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(files[i]);
+                imagePreview.appendChild(img);
+            }
+        });
+
+        function previewPost() {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const previewBox = document.getElementById('previewBox');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewContent = document.getElementById('previewContent');
+            const previewImages = document.getElementById('previewImages');
+
+            previewTitle.textContent = title;
+            previewContent.textContent = content;
+            previewImages.innerHTML = '';
+
+            const files = imageInput.files;
+            for (let i = 0; i < files.length; i++) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(files[i]);
+                previewImages.appendChild(img);
+            }
+
+            previewBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wardrobe Goals - Vogue Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body {
+        background-color: #fffafc;
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    header {
+        background: #f8d3e1;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header h1 {
+        color: #ff69b4;
+        font-size: 26px;
+        font-weight: 700;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+        color: #ff69b4;
+    }
+
+    /* Hero Section with Slider */
+    .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+    }
+    .hero-slider img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+    }
+    .hero-slider img.active {
+        opacity: 1;
+    }
+    .hero-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        background: rgba(255, 192, 203, 0.6);
+        padding: 20px 40px;
+        border-radius: 15px;
+    }
+    .hero-text h2 {
+        font-size: 48px;
+        font-weight: 700;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    }
+    .hero-text p {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    /* Categories Section */
+    .categories {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+    .categories h3 {
+        font-size: 34px;
+        color: #b49fd9;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+    .category-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(180,159,217,0.4);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    .category-card img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+    }
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255,105,180,0.8);
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        font-size: 20px;
+        font-weight: 600;
+        opacity: 1;
+    }
+    .category-card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Featured Section */
+    .featured {
+        text-align: center;
+        padding: 50px 20px;
+        background: #fdf1f6;
+    }
+    .featured h3 {
+        font-size: 34px;
+        color: #ff69b4;
+        margin-bottom: 15px;
+    }
+    .featured p {
+        max-width: 800px;
+        margin: 10px auto;
+        font-size: 18px;
+        color: #555;
+    }
+
+    /* Outfit Slider */
+    .slider {
+        max-width: 1000px;
+        margin: 50px auto;
+        overflow: hidden;
+        position: relative;
+    }
+    .slider-container {
+        display: flex;
+        transition: transform 0.6s ease-in-out;
+    }
+    .slider-card {
+        min-width: 300px;
+        margin: 0 10px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        overflow: hidden;
+        text-align: center;
+    }
+    .slider-card img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+    }
+    .slider-card p {
+        padding: 12px;
+        font-weight: 600;
+        color: #555;
+    }
+    .slider-buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .slider-buttons button {
+        padding: 10px 18px;
+        background: #ff69b4;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    .slider-buttons button:hover {
+        background: #e0529b;
+    }
+
+    /* Footer */
+    footer {
+        background: linear-gradient(135deg, #d7a683, #f8d3e1);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 50px;
+    }
+    footer h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    footer .social-icons img {
+        width: 30px;
+        margin: 0 8px;
+        transition: transform 0.3s ease;
+    }
+    footer .social-icons img:hover {
+        transform: scale(1.2);
+    }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Vogue Vault</h1>
+    <nav>
+        <ul>
+            <li><a href="Homepage.html">Home</a></li>
+            <li><a href="newpost2.html">Blogs</a></li>
+            <li><a href="categories.html">Wardrobe</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section with Slider -->
+<section class="hero-slider" id="heroSlider">
+    <img src="https://media.vogue.com.tw/photos/5db8b84a525c8c0008e68c78/master/w_1600%2Cc_limit/2015112069172537.jpg" class="active" alt="Fashion Look 1">
+    <img src="https://www.instyle.com/thmb/H3cn-xEd7MfcqMhoIOZByMyrR_8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-2040179816-9e0ecb6f7355442a8a2b4778fb9faecc.jpg" alt="Fashion Look 2">
+    <img src="https://stylesavvy.ie/cdn/shop/files/productimagery_5.png?v=1702476878" alt="Fashion Look 3">
+    <img src="https://oldmoneycollection.com/cdn/shop/files/Screenshot2024-11-04at1.10.51PM.png?v=1749407070&width=1200" alt="Fashion Look 4">
+    <img src="https://www.vogue.nl/wp-content/uploads/2024/08/kleurentrends-herfst-winter-2024-920x1380.jpg" alt="Fashion Look 5">
+    <img src="https://assets.vogue.com/photos/63d19420a1c8d7985db51cd0/3:4/w_1600%2Cc_limit/GettyImages-1459103647.jpg" alt="Fashion Look 6">
+    <div class="hero-text">
+        <h2>Wardrobe Goals</h2>
+        <p>Your perfect fashion inspiration is here!</p>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="categories">
+    <h3>Explore Our Wardrobe</h3>
+    <div class="category-grid">
+        <div class="category-card">
+            <a href="Casualwear.html">
+            <img src="https://assets.vogue.com/photos/67db1d636f2083b62435d4f9/3:2/w_2502,h_1668,c_limit/Holding%20Collage%20(2)%20(1)4.jpg" alt="casual">
+            <div class="overlay">Casual Wear</div>
+            </a>
+        </div>
+        <div class="category-card">
+            <a href="OfficeChic.html">
+            <img src="https://assets.vogue.com/photos/5ca238aadc87562e290d2e7b/master/w_2560%2Cc_limit/00-vw-office-wear.jpg" alt="Formal">
+            <div class="overlay">Office Chic</div>
+            </a>
+        </div>
+        <div class="category-card">
+            <a href="PartyGlam.html">
+            <img src="https://i.pinimg.com/736x/7e/3a/71/7e3a71090df9d299b28a9c003ee284bc.jpg" alt="Party">
+            <div class="overlay">Party Glam</div>
+            </a>
+        </div>
+        <div class="category-card">
+            <a href="EthnicVibes.html">
+            <img src="https://shaadiwish.com/blog/wp-content/uploads/2021/02/Saundh-Pastel-colored-Ethnic-wear.jpg" alt="Ethnic">
+            <div class="overlay">Ethnic Vibes</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Section -->
+<section class="featured">
+    <h3>Style Inspiration</h3>
+    <p>Discover outfits for every mood and occasion. From casual brunch looks to elegant evening attire, our wardrobe has it all.</p>
+</section>
+
+<!-- Outfit Slider -->
+<section class="slider">
+    <div class="slider-container" id="sliderContainer">
+        <div class="slider-card">
+            <img src="https://thepinkissue.com/wp-content/uploads/2024/06/Summer-Chic-Outfits-For-Girls-Who-Knows-How-To-Wear-It-Best-.jpg" alt="Outfit 1">
+            <p>Summer Chic</p>
+        </div>
+        <div class="slider-card">
+            <img src="https://binfinite.in/cdn/shop/files/AA_ab92848a-f8a2-42ed-84a5-67fa085946d6_1080x.jpg?v=1730886696" alt="Outfit 2">
+            <p>Evening Glam</p>
+        </div>
+        <div class="slider-card">
+            <img src="https://i.pinimg.com/736x/f9/dd/09/f9dd096bcce50bcd7a6789d2baa04088.jpg" alt="Outfit 3">
+            <p>Boho Vibes</p>
+        </div>
+        <div class="slider-card">
+            <img src="https://i2.wp.com/images.squarespace-cdn.com/content/v1/607cc34ebab4b20ba47a3b97/79c39020-5adf-4909-9e79-77969693f4ae/2024-Money-Aesthetic-Old-Style-Guide?w=1068&resize=1068,0&ssl=1" alt="Outfit 4">
+            <p>Classic Elegance</p>
+        </div>
+        <div class="slider-card">
+            <img src="https://i.pinimg.com/736x/22/8a/e2/228ae24f86d6fe7356c84c6b30367b1b.jpg" alt="Outfit 5">
+            <p>Chic and sleek</p>
+        </div>
+        <div class="slider-card">
+            <img src="https://www.sararohaleasghar.com/images/thumbs/0004139_classy-charm.jpeg" alt="Outfit 6">
+            <p>Classy Charm</p>
+        </div>
+        <div class="slider-card">
+            <img src="https://lexijades.com/cdn/shop/files/8E3611A1-614E-4AB5-B3D4-6106DBCF015E.jpg?crop=center&height=2844&v=1754955730&width=1896" alt="Outfit 7">
+            <p>The cozy edit</p>
+        </div>
+    </div>
+    <div class="slider-buttons">
+        <button onclick="prevSlide()">← Prev</button>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <h2>Vogue Vault</h2>
+    <p>Your stylish destination for fashion, beauty & lifestyle trends.</p>
+    <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+    </div>
+    <p>&copy; 2025 Vogue Vault | All Rights Reserved</p>
+</footer>
+
+<script>
+    /* Hero Slider (Fade Effect) */
+    let heroImages = document.querySelectorAll('#heroSlider img');
+    let heroIndex = 0;
+    setInterval(() => {
+        heroImages[heroIndex].classList.remove('active');
+        heroIndex = (heroIndex + 1) % heroImages.length;
+        heroImages[heroIndex].classList.add('active');
+    }, 4000);
+
+    /* Outfit Slider */
+    let sliderIndex = 0;
+    const slider = document.getElementById('sliderContainer');
+    const totalSlides = slider.children.length;
+    const slideWidth = slider.children[0].offsetWidth + 20; // 20px margin approx
+
+    function nextSlide() {
+        sliderIndex = (sliderIndex + 1) % totalSlides;
+        updateSlider();
+    }
+    function prevSlide() {
+        sliderIndex = (sliderIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+    function updateSlider() {
+        slider.style.transform = `translateX(-${sliderIndex * slideWidth}px)`;
+    }
+</script>
+
+</body>
+</html>

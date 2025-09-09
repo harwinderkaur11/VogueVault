@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ethnic Vibes – Vogue Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#a3b18a;
+    --peach:#ffe5d9;
+    --gold:#d4a373;
+    --bg:#fffaf4;
+    --ink:#333;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  header{
+    position:sticky; top:0; z-index:20;
+    background:#f4e2d8;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+  }
+  header h1{font-size:22px; color:var(--gold); margin:0;}
+  nav ul{display:flex; list-style:none; gap:22px; padding:0; margin:0;}
+  nav a{color:#333; text-decoration:none; font-weight:600}
+  nav a:hover{color:var(--gold)}
+
+  .hero{
+    position:relative; height:340px; overflow:hidden;
+    border-bottom:1px solid #f2dbe6;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(135deg, #fff3e8 0%, #f5f0e6 100%);
+  }
+  .hero-track{
+    position:absolute; inset:0; display:flex; width:max-content;
+    animation:slide 30s linear infinite;
+    opacity:.45; filter:saturate(105%);
+  }
+  .hero-track img{
+    width:560px; height:340px; object-fit:cover; flex:0 0 auto;
+  }
+  @keyframes slide{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .hero-text{
+    position:absolute; inset:0; display:grid; place-items:center; text-align:center;
+    padding:0 18px;
+  }
+  .hero-badge{
+    display:inline-block; background:rgba(212,163,115,.15); color:#222;
+    padding:6px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.5px;
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .hero h2{font-size:44px; color:#222; margin:4px 0 6px}
+  .hero p{color:#555; max-width:760px; margin:0 auto; font-size:16px}
+
+  .filters{
+    max-width:1200px; margin:28px auto 8px; padding:0 20px; display:flex; flex-wrap:wrap; gap:10px;
+    justify-content:center;
+  }
+  .chip{
+    border:2px solid #e6d7c5; background:#fff; color:#555;
+    padding:8px 14px; border-radius:999px; font-weight:600; font-size:14px; cursor:pointer;
+    transition:.25s ease;
+  }
+  .chip:hover{transform:translateY(-1px)}
+  .chip.active{background:var(--gold); border-color:var(--gold); color:#fff}
+
+  .wrap{max-width:1200px; margin:12px auto 50px; padding:0 20px;}
+  .grid{
+    display:grid; gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  }
+  .card{
+    background:#fff; border-radius:16px; overflow:hidden; position:relative;
+    box-shadow:0 8px 18px rgba(212,163,115,.35);
+    transition:transform .25s ease, box-shadow .25s ease;
+    cursor:pointer;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:0 14px 26px rgba(163,177,138,.35)}
+  .card img{width:100%; height:280px; object-fit:cover; display:block}
+  .caption{
+    padding:12px 14px; font-weight:600; font-size:14px; color:#555;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .tag{
+    font-size:11px; padding:4px 10px; border-radius:999px; background:#fff3e8; color:#a37143; font-weight:700;
+  }
+
+  .lightbox{
+    position:fixed; inset:0; background:rgba(0,0,0,.55);
+    display:none; align-items:center; justify-content:center; z-index:40;
+  }
+  .lightbox.open{display:flex}
+  .viewer{
+    width:min(92vw,980px); background:#fff; border-radius:18px; overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.25); position:relative;
+  }
+  .viewer img{width:100%; height:64vh; object-fit:cover; display:block}
+  .viewer .meta{
+    padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .viewer .meta .cap{font-weight:700; color:#444}
+  .viewer .meta .pill{font-size:12px; background:#fff3e8; color:#a37143; padding:6px 12px; border-radius:999px; font-weight:700}
+  .ctrl{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.9);
+    display:grid; place-items:center; font-size:20px; font-weight:900; color:#444; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+  }
+  .ctrl:hover{background:#fff}
+  .prev{left:10px} .next{right:10px}
+  .close{
+    position:absolute; top:10px; right:10px; width:38px; height:38px; border-radius:50%;
+    background:#fff; display:grid; place-items:center; font-size:18px; font-weight:900; color:#444;
+    box-shadow:0 6px 18px rgba(0,0,0,.15); cursor:pointer;
+  }
+
+  footer{
+    background:linear-gradient(135deg,#a3b18a,#d4a373);
+    color:#fff; text-align:center; padding:36px 18px;
+  }
+  footer img{width:26px; margin:0 6px; transition:transform .2s ease}
+  footer img:hover{transform:scale(1.15)}
+
+  @media (max-width:560px){
+    .hero h2{font-size:34px}
+    .hero{height:280px}
+    .hero-track img{height:280px; width:420px}
+    .card img{height:240px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Vogue Vault</h1>
+  <nav>
+    <ul>
+      <li><a href="Homepage.html">Home</a></li>
+      <li><a href="newpost2.html">Blogs</a></li>
+      <li><a href="WardrobeGoals.html">Wardrobe</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Ethnic Vibes">
+  <div class="hero-track">
+    <img src="https://www.kalkifashion.com/blogs/wp-content/uploads/2023/11/The-Enchanting-World-of-Mughal-inspired-Ethnic-Fashion.jpg" alt="">
+    <img src="https://www.kalkifashion.com/blogs/wp-content/uploads/2023/11/Fusion_Fashion_Blending_Ethnic_and_Western_Styles_for_a_Unique_Look.jpg" alt="">
+    <img src="https://rangita.com/cdn/shop/articles/BLOG_BANNER_-_Festive_520x500_60155f9a-2d59-47cc-b591-ebc075536b66.png?v=1746784299" alt="">
+    <img src="https://safaaworld.com/cdn/shop/articles/safaa_blog_indian_wear.jpg?v=1714716489" alt="">
+    <img src="https://media.samyakk.com/pub/media/catalog/product/d/u/dusty-pink-zari-woven-kanchipuram-silk-saree-with-unstitched-blouse-sr27722.jpg" alt="">
+  </div>
+  <div class="hero-text">
+    <span class="hero-badge">Ethnic Edit</span>
+    <h2>Celebrate Tradition with Style</h2>
+    <p>From elegant sarees to chic indo-western, find inspiration for every festive moment.</p>
+  </div>
+</section>
+
+<div class="filters">
+  <!--<button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="sarees">Sarees</button>
+  <button class="chip" data-filter="lehengas">Lehengas</button>
+  <button class="chip" data-filter="kurtis">Kurtis</button>
+  <button class="chip" data-filter="anarkalis">Anarkalis</button>
+  <button class="chip" data-filter="indo">Indo-Western</button> -->
+</div>
+
+<main class="wrap">
+  <section class="grid" id="gallery">
+    <figure class="card" data-cat="lehenga">
+      <img src="https://assets.vogue.in/photos/6597a7fd34ca0a7725091ab2/2:3/w_2560%2Cc_limit/Snapinsta.app_415621679_18410184910024166_8181743226338236928_n_1080.jpg" alt="Sarees">
+      <figcaption class="caption"><span>Sarees Glam</span><span class="tag">Sarees</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="Lehenga">
+      <img src="https://assets.vogue.in/photos/5e09e2697c02da0008039136/master/w_1600%2Cc_limit/Anushka-Sharma-in-Sabyasachi.jpg" alt="Lehenga">
+      <figcaption class="caption"><span>Bold Lehenga Glamour</span><span class="tag">Lehenga</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="kurtis">
+      <img src="https://kapdavilla.com/images/product/sub_images/2019/02/IMG-20190219-WA0151-1.jpg" alt="Kurti">
+      <figcaption class="caption"><span>Kurtis</span><span class="tag pink">Kurti</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="anarkalis">
+      <img src="https://indiashopping.io/cdn/shop/files/AF5727-1.png?v=1735973899" alt="anarkalis">
+      <figcaption class="caption"><span>Anarkalis</span><span class="tag pink">Anarkalis</span></figcaption>
+    </figure>
+    <figure class="card" data-cat="indo-western">
+      <img src="https://i.pinimg.com/474x/09/45/b9/0945b9d2f480e21940db1b047ca1ac32.jpg" alt="Indo-Western">
+      <figcaption class="caption"><span>Indo-Western</span><span class="tag peach">Indo-Western</span></figcaption>
+    </figure>
+
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="viewer">
+    <img id="viewImg" alt="">
+    <div class="meta">
+      <span class="cap" id="viewCap">Caption</span>
+      <span class="pill" id="viewTag">Category</span>
+    </div>
+    <div class="ctrl prev" id="prevBtn">‹</div>
+    <div class="ctrl next" id="nextBtn">›</div>
+    <div class="close" id="closeBtn">×</div>
+  </div>
+</div>
+
+<footer>
+  <h3 style="margin:0 0 6px">Vogue Vault</h3>
+  <p style="opacity:.9; margin:0 0 10px">Your stylish destination for fashion, beauty & lifestyle trends.</p>
+  <div>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+  </div>
+  <p style="font-size:13px; opacity:.8; margin-top:8px;">© 2025 Vogue Vault · All Rights Reserved</p>
+</footer>
+
+<script>
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.card');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+
+      const f = chip.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const viewImg  = document.getElementById('viewImg');
+  const viewCap  = document.getElementById('viewCap');
+  const viewTag  = document.getElementById('viewTag');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const gallery  = Array.from(document.querySelectorAll('.card'));
+
+  let idx = 0;
+
+  function openAt(i){
+    idx = i;
+    const fig = gallery[idx];
+    const img = fig.querySelector('img');
+    const cap = fig.querySelector('.caption span').textContent;
+    const tag = fig.dataset.cat;
+
+    viewImg.src = img.src;
+    viewImg.alt = img.alt;
+    viewCap.textContent = cap;
+    viewTag.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeBox(){ lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+  function next(){ idx = (idx + 1) % gallery.length; openAt(idx); }
+  function prev(){ idx = (idx - 1 + gallery.length) % gallery.length; openAt(idx); }
+
+  gallery.forEach((fig, i) => {
+    fig.addEventListener('click', () => openAt(i));
+  });
+
+  closeBtn.addEventListener('click', closeBox);
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeBox(); });
+  document.addEventListener('keydown', (e) => {
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeBox();
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft') prev();
+  });
+</script>
+
+</body>
+</html>

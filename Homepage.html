@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogue Vault - Blogging Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fff7f9;
+            color: #333;
+        }
+
+        header {
+            background: #f8d3e1;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #ff69b4;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('https://images.template.net/75381/Free-Pastel-Iphone-Background-01-1.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2, .hero p, .hero button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .hero button {
+            background: #ff69b4;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            margin-top: 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .categories div {
+            background: pink;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .categories div:hover {
+            transform: scale(1.05);
+        }
+
+        /* Featured Blogs */
+        .featured {
+            text-align: center;
+            margin: 50px 20px;
+        }
+
+        .featured h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff69b4;
+        }
+
+        .blog-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .blog-card {
+            width: 250px;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Scrollable Gallery */
+        .scroll-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .scroll-gallery .gallery-item {
+            flex-shrink: 0;
+            text-align: center;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .scroll-gallery .gallery-item img {
+            width: 250px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(160, 239, 176, 0.3); /* Clean shadow */
+            cursor: pointer;
+        }
+
+        .scroll-gallery .gallery-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(160, 239, 176, 0.5); /* Hover shadow */
+        }
+
+        /* Hide scrollbar for clean look */
+        .scroll-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #d7a683, #f8d3e1);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-container h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .footer-container p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a img {
+            width: 28px;
+            margin: 0 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a img:hover {
+            transform: scale(1.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Vogue Vault</h1>
+        <nav>
+            <ul>
+                <li><a href="newpost2.html">Blogs</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="author.html">Author</a></li>
+                <li><a href="signup.html">Signup</a></li>
+                <li><a href="user_dashboard.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2 style="color: black;">Welcome to Vogue Vault</h2>
+        <p style="color: black;">Your stylish destination for fashion, beauty, and lifestyle blogs</p>
+        <a href="Categories.html"><button>Explore Now</button></a>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div style="color: black;">New Posts</div>
+        <div>Trending</div>
+        <div>Tips & Tricks</div>
+        <div>Lifestyle</div>
+        <div>Beauty Hacks</div>
+    </section>
+
+    <!-- Featured Blogs -->
+    <section class="featured">
+        <h3>Featured Blogs</h3>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <a href="WardrobeGoals.html">
+                <img src="https://thumbs.dreamstime.com/b/stylish-wardrobe-filled-pastel-pink-dresses-shoes-pouf-all-clothing-hangs-neatly-hangers-closet-341188136.jpg" alt="Blog 1">
+                <h4>Wardrobe Goals</h4>
+                </a>
+            </div>
+            <div class="blog-card">
+                <a href="Hairstyles2.html">
+                <img src="https://gemeriahair.in/cdn/shop/articles/party_hairstyle_for_women_b8b99376-b88f-4f38-9263-f682987456f2.jpg?v=1742966753" alt="Blog 2">
+                <h4>Trendy Hairstyles You Must Try</h4>
+                </a>
+            </div>
+            <div class="blog-card">
+                <a href="BeautySkincare.html">
+                <img src="https://i.pinimg.com/170x/12/41/eb/1241eb6b7b3b86c3efb3ccc9bb861d51.jpg" alt="Blog 3">
+                <h4>Beauty and Skincare</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrollable Gallery -->
+    <section class="scroll-gallery">
+        <div class="gallery-item">
+            <a href="DesktoDinner.html"><img src="https://assets.vogue.com/photos/5c9d068cd52c962e43a2b4a2/master/w_2560%2Cc_limit/00-vw-easter-pastels.jpg" alt="From Desk to Dinner"></a>
+            <p>From Desk to Dinner</p>
+        </div>
+        <div class="gallery-item">
+            <a href="MakeupAsthetics.html"><img src="https://assets.vogue.com/photos/64e6517dbafa7bf543cb3f10/1:1/w_2560,h_2560,c_limit/VO0923_Pastels_01.jpg" alt="Makeup Aesthetic"></a>
+            <p>Makeup Aesthetic</p>
+        </div>
+        <div class="gallery-item">
+            <a href="NailArt.html"><img src="https://assets.vogue.in/photos/61c04effe519ba5c28e92cc6/1:1/w_1080,h_1080,c_limit/9%20nail%20trends%20to%20try%20this%20winter.jpg" alt="Nail Art"></a>
+            <p>Nail Art</p>
+        </div>
+        <div class="gallery-item">
+            <a href="Accessories.html"><img src="https://cdn.shopify.com/s/files/1/0553/8142/6241/files/SS24_Accessorize_Sparse_10_118_480x480.jpg?v=1720772886" alt="Accessories"></a>
+            <p>Accessories</p>
+        </div>
+        <div class="gallery-item">
+            <a href="Beauty_Products.html"><img src="https://i.pinimg.com/736x/24/83/36/248336e4fbcf758fe84fcfcecdbf75e0.jpg" alt="Beauty Products"></a>
+            <p>Beauty Products</p>
+        </div>
+        <div class="gallery-item">
+            <a href="Footwears.html"><img src="https://bl-i.thgim.com/public/migration_catalog/article18021289.ece/alternates/LANDSCAPE_1200/sbtb29_shoes_LV4.jpg" alt="Footwears"></a>
+            <p>Footwears</p>
+        </div>
+        <div class="gallery-item">
+            <a href="Hairstyles.html"><img src="https://voguevocal.com/wp-content/uploads/2024/09/Banner.png" alt="Hairstyles"></a>
+            <p>Hairstyles</p>
+        </div>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <h2>Vogue Vault</h2>
+            <p>Your stylish destination for fashion, beauty & lifestyle trends.</p>
+            <div class="social-icons">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+            </div>
+            <p class="copyright">&copy; 2025 Vogue Vault | All Rights Reserved</p>
+        </div>
+    </footer>
+
+</body>
+</html>

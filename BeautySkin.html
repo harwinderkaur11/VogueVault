@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty & Skincare - Vogue Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body {
+        background-color: #fff8f0;
+        color: #333;
+    }
+    header {
+        background: #f8d3e1;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header h1 {
+        color: #ff69b4;
+        font-size: 24px;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+        color: #ff69b4;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 38px;
+        color: #ff69b4;
+        margin: 40px 0 10px;
+    }
+    .subtitle {
+        text-align: center;
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(210,180,222,0.4);
+        transition: transform 0.3s ease;
+        background-color: #f9f0f8;
+    }
+    .gallery-item img {
+        width: 80%;
+        height:80%;
+        display: block;
+        transition: transform 0.3s ease;
+        border-radius: 15px;
+    }
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+    .caption {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(255, 182, 193, 0.85);
+        color: white;
+        text-align: center;
+        padding: 12px 10px;
+        font-size: 18px;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: 0 0 15px 15px;
+    }
+    .gallery-item:hover .caption {
+        opacity: 1;
+    }
+
+    button.back {
+        display: block;
+        margin: 40px auto;
+        padding: 12px 30px;
+        background: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    button.back:hover {
+        transform: scale(1.05);
+    }
+
+    footer {
+        background: linear-gradient(135deg, #d7a683, #f8d3e1);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 50px;
+    }
+    footer .social-icons a img {
+        width: 28px;
+        margin: 0 8px;
+        transition: transform 0.3s ease;
+    }
+    footer .social-icons a img:hover {
+        transform: scale(1.2);
+    }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Vogue Vault</h1>
+    <nav>
+        <ul>
+            <li><a href="Homepage2.html">Home</a></li>
+            <li><a href="#">Explore Wardrobe</a></li>
+            <li><a href="#">Categories</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Page Title -->
+<h2 class="section-title">Beauty & Skincare</h2>
+<p class="subtitle">Glow naturally with these beauty and skincare inspirations!</p>
+
+<!-- Gallery -->
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://i.pinimg.com/736x/20/2a/14/202a14bcbc9c19db6471abc2b6795bc4.jpg" alt="Natural Glow">
+        <div class="caption">Natural Glow Look</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://beautyandwellnessmed.com/wp-content/uploads/2025/01/Morning-skincare-routine-5.jpg" alt="Morning Skincare">
+        <div class="caption">Morning Skincare Routine</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/5a6c00948fd4d2514c19f198/1551835450358-FSNY5V9ZNNS9IYU7MX8J/everyday+makeup+essentials.png" alt="Makeup Essentials">
+        <div class="caption">Makeup Essentials</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://i.pinimg.com/736x/a0/fc/38/a0fc380afda570cb31fdd9c9e8b2d2ba.jpg" alt="Night Routine">
+        <div class="caption">Night Care Essentials</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://images-cdn.ubuy.co.in/64d83e47f94e6d06357a8c14-jelly-mask-for-facials-12-flavors.jpg" alt="Face Masks">
+        <div class="caption">DIY Face Masks</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://media.voguebusiness.com/photos/65bbc7317df6544f6981ed2b/2:3/w_2560%2Cc_limit/LEAD-rhode_Hailey-lip.jpg" alt="Lip Care">
+        <div class="caption">Soft Lips Care</div>
+    </div>
+</div>
+
+<!-- Back Button -->
+<button class="back" onclick="goBack()">← Back to Wardrobe</button>
+
+<!-- Footer -->
+<footer>
+    <h2>Vogue Vault</h2>
+    <p>Your ultimate source for fashion, beauty & style trends.</p>
+    <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+    </div>
+    <p>&copy; 2025 Vogue Vault | All Rights Reserved</p>
+</footer>
+
+<script>
+    function goBack() {
+        window.location.href = 'wardrobe.html'; // Change this to your wardrobe page
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Vogue Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://images.template.net/75381/Free-Pastel-Iphone-Background-01-1.jpg') no-repeat center center/cover;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        .signup-container {
+            max-width: 400px;
+            margin: 60px auto;
+            background: #f8d3e1;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(255,182,193,0.3);
+            padding: 40px 30px;
+        }
+        .signup-container h2 {
+            text-align: center;
+            color: #ff69b4;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .signup-container p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .signup-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        .signup-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 2px solid #ffb6c1;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        .signup-form input:focus {
+            border-color: #b49fd9;
+            outline: none;
+        }
+        .signup-form button {
+            width: 100%;
+            background: #ff69b4;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .signup-form button:hover {
+            background: #b49fd9;
+        }
+        .signup-container .footer-links {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .signup-container .footer-links a {
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 8px;
+            transition: color 0.3s;
+        }
+        .signup-container .footer-links a:hover {
+            color: #b49fd9;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <p>Create your Vogue Vault account</p>
+        <form class="signup-form" id="signupForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter 10-digit number">
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Create Account</button>
+        </form>
+        <div class="footer-links">
+            <span>Already have an account?</span>
+            <a href="login2.html">Log In</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const dob = document.getElementById('dob').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!name || !email || !phone || !dob || !password) {
+                alert('Please fill in all fields.');
+                e.preventDefault();
+                return;
+            }
+            if (!/^\d{10}$/.test(phone)) {
+                alert('Please enter a valid 10-digit phone number.');
+                e.preventDefault();
+                return;
+            }
+            // Minimum age check
+            const dobDate = new Date(dob);
+            const today = new Date();
+            const age = today.getFullYear() - dobDate.getFullYear();
+            const m = today.getMonth() - dobDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+                // Birthday not reached yet this year
+                age--;
+            }
+            if (age < 18) {
+                alert('You should be at least 18 years old.');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

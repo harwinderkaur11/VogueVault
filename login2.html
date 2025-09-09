@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Vogue Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.template.net/75381/Free-Pastel-Iphone-Background-01-1.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        /* Overlay for better text visibility */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 182, 193, 0.35); /* Pastel pink overlay */
+            z-index: 1;
+        }
+        .login-container {
+            position: relative;
+            z-index: 2;
+            max-width: 400px;
+            width: 90%;
+            margin: 20px auto;
+            background: #f8d3e1;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(255,182,193,0.3);
+            padding: 40px 30px;
+        }
+        .login-container h2 {
+            text-align: center;
+            color: #ff69b4;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .login-container p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 2px solid #ffb6c1;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        .login-form input:focus {
+            border-color: #b49fd9;
+            outline: none;
+        }
+        .login-form button {
+            width: 100%;
+            background: #ff69b4;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .login-form button:hover {
+            background: #b49fd9;
+        }
+        .footer-links {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .footer-links a {
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 8px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #b49fd9;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Log In</h2>
+        <p>Welcome back to Vogue Vault</p>
+        <form class="login-form" id="loginForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+        <div class="footer-links">
+            <span>Don't have an account?</span>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

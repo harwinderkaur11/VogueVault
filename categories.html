@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Vogue Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff69b4;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c2c2c;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #ff69b4;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #ff69b4;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff8fab 50%, #ffb6c1 100%);
+            padding: 80px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255, 105, 180, 0.2);
+        }
+
+        .category-image {
+            height: 180px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff8fab 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .category-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .category-card:hover .category-image::before {
+            transform: translateX(100%);
+        }
+
+        .category-content {
+            padding: 25px 20px;
+        }
+
+        .category-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 12px;
+        }
+
+        .category-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .article-count {
+            color: #ff69b4;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .category-tag {
+            background: linear-gradient(135deg, #ff69b4, #ff8fab);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
+            padding: 40px 40px;
+            margin: 20px 0;
+        }
+
+        .featured-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.15);
+        }
+
+        .featured-image {
+            height: 200px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff8fab 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .featured-content {
+            padding: 20px;
+        }
+
+        .featured-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+
+        .featured-excerpt {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff8fab 100%);
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain2" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain2)"/></svg>');
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-title {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .newsletter-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        .newsletter-button {
+            background: #2c2c2c;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .newsletter-button:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 40px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff69b4;
+            margin-bottom: 8px;
+        }
+
+        .footer-tagline {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icons img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icons a:hover img {
+            opacity: 1;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-input {
+                min-width: 280px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+            
+            .categories-section {
+                padding: 60px 20px;
+            }
+            
+            .featured-section {
+                padding: 60px 20px;
+            }
+            
+            .newsletter-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="brand">VOGUE VAULT</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="Homepage.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <!-- <li><a href="#">Contact</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Fashion Categories</h1>
+            <p>Explore curated collections of the latest trends, beauty secrets, and style inspiration across all fashion categories</p>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="section-header">
+            <h2 class="section-title">Fashion Categories</h2>
+            <p class="section-subtitle">Dive into our comprehensive collection of fashion content, from runway trends to sustainable style</p>
+        </div>
+        
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image"><img src="https://i.pinimg.com/1200x/e1/fb/a4/e1fba46c56a1679977a0d3e63cd3459b.jpg"></div>
+                <div class="category-content">
+                    <h3 class="category-title">Fashion Trends</h3>
+                    <p class="category-description">Stay ahead with the latest runway trends, seasonal must-haves, and style predictions that define contemporary fashion.</p>
+                    <div class="category-stats">
+                        <span class="article-count">150+ Articles</span>
+                        <a href="blog1.html" class="category-tag">Trending</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image"><img src="https://i.pinimg.com/736x/8b/30/f5/8b30f59ca33eaed3db75185f5cd43ef7.jpg"></div>
+                <div class="category-content">
+                    <h3 class="category-title">Beauty & Makeup</h3>
+                    <p class="category-description">From skincare routines to makeup tutorials, discover beauty secrets and techniques for every occasion.</p>
+                    <div class="category-stats">
+                        <span class="article-count">120+ Articles</span>
+                        <span class="category-tag">Popular</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image"><img src="https://i.pinimg.com/1200x/dd/54/94/dd5494fd27b454f9c4586739e5ef7921.jpg"></div>
+                <div class="category-content">
+                    <h3 class="category-title">Accessories</h3>
+                    <p class="category-description">Complete your look with the perfect accessories - from statement jewelry to designer handbags.</p>
+                    <div class="category-stats">
+                        <span class="article-count">80+ Articles</span>
+                        <span class="category-tag">New</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image"><img src="https://i.pinimg.com/1200x/3d/98/92/3d98923911013f8832055b5cdb6ab6c8.jpg"></div>
+                <div class="category-content">
+                    <h3 class="category-title">Footwear</h3>
+                    <p class="category-description">Step into style with the latest shoe trends, from comfortable sneakers to elegant heels.</p>
+                    <div class="category-stats">
+                        <span class="article-count">95+ Articles</span>
+                        <span class="category-tag">Hot</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image"><img src="https://i.pinimg.com/736x/3f/85/56/3f8556dc536885d6ea02ccfd6fe97772.jpg"></div>
+                <div class="category-content">
+                    <h3 class="category-title">Sustainable Fashion</h3>
+                    <p class="category-description">Eco-friendly fashion choices, ethical brands, and sustainable style practices for conscious consumers.</p>
+                    <div class="category-stats">
+                        <span class="article-count">60+ Articles</span>
+                        <span class="category-tag">Eco</span>
+                    </div>
+                </div>
+            </div>
+
+                         <div class="category-card">
+                 <div class="category-image"><img src="https://i.pinimg.com/1200x/34/7a/ec/347aec6edde49ee408d8a561e38d416b.jpg"></div>
+                 <div class="category-content">
+                     <h3 class="category-title">Lifestyle</h3>
+                     <p class="category-description">Fashion meets lifestyle with tips on wellness, travel style, and living your best fashionable life.</p>
+                     <div class="category-stats">
+                         <span class="article-count">110+ Articles</span>
+                         <span class="category-tag">Lifestyle</span>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="category-card">
+                 <div class="category-image"><img src="https://i.pinimg.com/736x/15/60/a2/1560a26a5d1f7295eb34414124707ecd.jpg"></div>
+                 <div class="category-content">
+                     <h3 class="category-title">Street Style</h3>
+                     <p class="category-description">Discover urban fashion trends, streetwear inspiration, and how to master casual chic looks.</p>
+                     <div class="category-stats">
+                         <span class="article-count">85+ Articles</span>
+                         <span class="category-tag">Urban</span>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="category-card">
+                 <div class="category-image"><img src="https://i.pinimg.com/736x/81/de/da/81dedafeb62fe5806b507babf88f5c23.jpg" alt="Luxury Fashion"></div>
+                 <div class="category-content">
+                     <h3 class="category-title">Luxury Fashion</h3>
+                     <p class="category-description">Explore high-end designer collections, luxury brands, and sophisticated style for special occasions.</p>
+                     <div class="category-stats">
+                         <span class="article-count">75+ Articles</span>
+                         <span class="category-tag">Luxury</span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </section>
+
+    <!-- Featured Articles Section -->
+    <section class="featured-section">
+        <div class="featured-container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Articles</h2>
+                <p class="section-subtitle">Handpicked content that's making waves in the fashion world</p>
+            </div>
+            
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-image"><img src="https://i.pinimg.com/736x/c4/c4/b2/c4c4b2a98dcf3e94c0f4325c47c9252f.jpg"></div>
+                    <div class="featured-content">
+                        <h3 class="featured-title">Spring 2024 Fashion Trends</h3>
+                        <p class="featured-excerpt">Discover the hottest trends that will dominate the fashion scene this spring season.</p>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-image"><img src="https://i.pinimg.com/736x/3c/35/3e/3c353e704e32c25d9c165fbbda7d27c4.jpg"></div>
+                    <div class="featured-content">
+                        <h3 class="featured-title">Sustainable Fashion Guide</h3>
+                        <p class="featured-excerpt">How to build an eco-friendly wardrobe without compromising on style.</p>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-image"><img src="https://i.pinimg.com/736x/cc/93/29/cc93291fa1510311b4275130ccca8dcb.jpg"></div>
+                    <div class="featured-content">
+                        <h3 class="featured-title">Celebrity Style Breakdown</h3>
+                        <p class="featured-excerpt">Analyzing the best red carpet looks from this year's award season.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2 class="newsletter-title">Stay Updated</h2>
+            <p class="newsletter-description">Subscribe to our newsletter for the latest fashion trends, beauty tips, and exclusive content delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <h2 class="footer-brand">Vogue Vault</h2>
+            <p class="footer-tagline">Your stylish destination for fashion, beauty & lifestyle trends.</p>
+
+            <div class="social-icons">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+            </div>
+
+            <p class="copyright">&copy; 2025 Vogue Vault | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

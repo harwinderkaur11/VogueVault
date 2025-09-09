@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Vogue Vault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url("https://images.template.net/75381/Free-Pastel-Iphone-Background-01-1.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+    header {
+      background: #f8d3e1;
+      padding: 20px;
+      text-align: center;
+      color: #ff69b4;
+      font-size: 28px;
+      font-weight: 700;
+      border-bottom: 2px solid #f8d3e1;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border: 2px solid #ffc0cb;
+    }
+    h2 { color: #ff69b4; margin-bottom: 20px; }
+    label { display: block; margin-top: 15px; font-weight: 600; }
+    select, input[type="checkbox"], input[type="password"] {
+      margin-top: 8px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #ff69b4;
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #ff1493; }
+    footer {
+      background: #f8d3e1;
+      padding: 15px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+      border-top: 2px solid #ffb6c1;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>⚙ Settings - Vogue Vault</header>
+
+  <div class="container">
+    <h2>Customize Your Account</h2>
+    <form>
+      <label>Theme:</label>
+      <select>
+        <option>Light</option>
+        <option>Dark</option>
+      </select>
+      
+      <label><input type="checkbox"> Email Notifications</label>
+      <label><input type="checkbox"> SMS Alerts</label>
+      <label><input type="checkbox"> Newsletter Subscription</label>
+
+      <h2>🔒 Change Password</h2>
+      <label>Current Password:</label>
+      <input type="password" placeholder="Enter current password">
+
+      <label>New Password:</label>
+      <input type="password" placeholder="Enter new password">
+
+      <label>Confirm New Password:</label>
+      <input type="password" placeholder="Confirm new password">
+      
+      <button type="submit">Save Preferences</button>
+    </form>
+  </div>
+
+  <footer>© 2025 Vogue Vault | Settings</footer>
+</body>
+</html>

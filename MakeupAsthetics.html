@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makeup Aesthetic - Vogue Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body {
+        background-color: #fff7f9;
+        color: #333;
+        line-height: 1.6;
+    }
+    header {
+        background: #f8d3e1;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header h1 {
+        color: #ff69b4;
+        font-size: 24px;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+        color: #ff69b4;
+    }
+    .blog-header {
+        text-align: center;
+        padding: 50px 20px 20px;
+    }
+    .blog-header h2 {
+        font-size: 42px;
+        color: #ff69b4;
+    }
+    .blog-header p {
+        font-size: 18px;
+        margin-top: 10px;
+        color: #555;
+    }
+    .blog-content {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+    .blog-content img {
+        width: 100%;
+        border-radius: 15px;
+        margin: 20px 0;
+        box-shadow: 0 8px 20px rgba(180,159,217,0.5); /* pastel lavender shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .blog-content img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 30px rgba(180,159,217,0.7);
+    }
+    .blog-content h3 {
+        margin-top: 25px;
+        color: #b49fd9;
+        font-size: 28px;
+    }
+    .blog-content p {
+        margin: 15px 0;
+        font-size: 16px;
+        color: #555;
+    }
+    button.back {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.3s ease;
+    }
+    button.back:hover {
+        transform: scale(1.05);
+    }
+    footer {
+        background: linear-gradient(135deg, #d7a683, #f8d3e1);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 40px;
+    }
+    footer .social-icons a img {
+        width: 28px;
+        margin: 0 8px;
+        transition: transform 0.3s ease;
+    }
+    footer .social-icons a img:hover {
+        transform: scale(1.2);
+    }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Vogue Vault</h1>
+    <nav>
+        <ul>
+            <li><a href="Homepage.html">Home</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">Categories</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Blog Header -->
+<section class="blog-header">
+    <h2>Makeup Aesthetic</h2>
+    <p>Learn how to create a dreamy pastel makeup aesthetic to enhance your style and confidence.</p>
+</section>
+
+<!-- Blog Content -->
+<section class="blog-content">
+    <img src="https://assets.vogue.com/photos/64e6517dbafa7bf543cb3f10/1:1/w_2560,h_2560,c_limit/VO0923_Pastels_01.jpg" alt="Makeup Aesthetic">
+
+    <h3>Step 1: Start with a Clean Base</h3>
+    <p>Begin with a fresh, moisturized face. Apply a lightweight foundation or BB cream for an even and natural-looking base.</p>
+
+    <h3>Step 2: Soft Pastel Eyes</h3>
+    <p>Choose pastel shades like lilac, baby pink, or mint for your eyelids. Blend softly for a dreamy and subtle effect.</p>
+
+    <h3>Step 3: Flawless Glow</h3>
+    <p>Highlight your cheekbones, brow bones, and the bridge of your nose. Use a gentle shimmer to achieve a natural glow.</p>
+
+    <h3>Step 4: Play with Lips</h3>
+    <p>Opt for pastel lipsticks or lip gloss in soft pinks, peaches, or lavender. You can also layer with shimmer gloss for added aesthetic.</p>
+
+    <h3>Step 5: Finishing Touches</h3>
+    <p>Define your lashes with a subtle mascara. Keep the overall look soft and ethereal. The key to makeup aesthetic is balance and harmony of colors.</p>
+
+    <button class="back" onclick="goBack()">← Back to Home</button>
+</section>
+
+<!-- Footer -->
+<footer>
+    <h2>Vogue Vault</h2>
+    <p>Your stylish destination for fashion, beauty & lifestyle trends.</p>
+    <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+    </div>
+    <p>&copy; 2025 Vogue Vault | All Rights Reserved</p>
+</footer>
+
+<script>
+    // JS Function to go back to homepage
+    function goBack() {
+        window.location.href = 'Homepage.html';
+    }
+</script>
+
+</body>
+</html>

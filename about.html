@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Vogue Vault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.template.net/75381/Free-Pastel-Iphone-Background-01-1.jpg') no-repeat center center/cover;
+      color: #333;
+    }
+    header {
+      background: rgba(255,182,193,0.9);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      color: #ff69b4;
+      font-size: 28px;
+      margin: 0;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #b49fd9;
+    }
+    .about-container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: rgba(255, 240, 245, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(255,182,193,0.3);
+      padding: 40px 50px;
+    }
+    .about-container h2 {
+      text-align: center;
+      font-size: 34px;
+      color: #ff69b4;
+      margin-bottom: 20px;
+    }
+    .about-container p {
+      line-height: 1.8;
+      font-size: 17px;
+      margin-bottom: 20px;
+      color: #444;
+    }
+    .team-section {
+      margin-top: 40px;
+    }
+    .team-section h3 {
+      text-align: center;
+      color: #b49fd9;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .team-card {
+      background: #fff;
+      border-radius: 15px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+    .team-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+    .team-card h4 {
+      margin: 10px 0 5px;
+      color: #ff69b4;
+      font-size: 18px;
+    }
+    .team-card p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
+      background: rgba(255,182,193,0.8);
+      color: #333;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header>
+    <h1>Vogue Vault</h1>
+    <nav>
+      <a href="Homepage.html">Home</a>
+      <a href="newpost2.html">Blog</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <div class="about-container">
+    <h2>About Vogue Vault</h2>
+    <p>
+      Welcome to <strong>Vogue Vault</strong> — your ultimate destination for timeless style, trend inspiration, 
+      and fashion-forward stories. We believe that fashion is more than clothing; it’s a reflection of confidence, 
+      creativity, and culture.
+    </p>
+    <p>
+      Founded with passion for fashion and storytelling, Vogue Vault blends the latest trends with classic elegance. 
+      Whether you’re here to discover fresh outfit ideas, explore designer highlights, or gain insights into sustainable 
+      fashion, we’ve got you covered.
+    </p>
+    <p>
+      Our mission is to build a community where fashion lovers can share inspiration, celebrate individuality, 
+      and unlock their unique style — because style belongs to everyone.
+    </p>
+
+    <!-- Team Section -->
+    <div class="team-section">
+      <h3>Meet Our Team</h3>
+      <div class="team-members">
+        <div class="team-card" data-bio="">
+          <img src="team1.jpg" alt="Team Member">
+          <h4>Harshita</h4>
+          <p>2410991336</p>
+        </div>
+        <div class="team-card" data-bio="">
+          <img src="team2.jpg" alt="Team Member">
+          <h4>Harshita Garg</h4>
+          <p>2410991338</p>
+        </div>
+        <div class="team-card" data-bio="">
+          <img src="team3.jpg" alt="Team Member">
+          <h4>Harshita Singla</h4>
+          <p>2410991339</p>
+        </div>
+        <div class="team-card" data-bio="">
+          <img src="team4.jpg" alt="Team Member">
+          <h4>Harwinder Kaur</h4>
+          <p>2410991340</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © <span id="year"></span> Vogue Vault | All Rights Reserved
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 1. Smooth scroll for nav links
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", function(e) {
+        if (this.getAttribute("href").startsWith("#")) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // 2. Click on team card to show bio
+    document.querySelectorAll(".team-card").forEach(card => {
+      card.addEventListener("click", function() {
+        const bio = this.getAttribute("data-bio");
+        alert(`${this.querySelector("h4").innerText}: ${bio}`);
+      });
+    });
+
+    // 3. Auto update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Footwears - Vogue Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body {
+        background-color: #fff7f9;
+        color: #333;
+        line-height: 1.6;
+    }
+    header {
+        background: #f8d3e1;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header h1 {
+        color: #ff69b4;
+        font-size: 24px;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+        color: #ff69b4;
+    }
+    .blog-header {
+        text-align: center;
+        padding: 50px 20px 20px;
+    }
+    .blog-header h2 {
+        font-size: 42px;
+        color: #ff69b4;
+    }
+    .blog-header p {
+        font-size: 18px;
+        margin-top: 10px;
+        color: #555;
+    }
+    .blog-content {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+    .blog-content img {
+        width: 70%;       /* smaller width */
+        max-width: 600px; /* restrict maximum size */
+        display: block;
+        margin: 20px auto; /* center the image */
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(180,159,217,0.5); /* pastel lavender shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .blog-content img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 30px rgba(180,159,217,0.7);
+    }
+    .blog-content h3 {
+        margin-top: 25px;
+        color: #b49fd9;
+        font-size: 28px;
+    }
+    .blog-content p {
+        margin: 15px 0;
+        font-size: 16px;
+        color: #555;
+    }
+    button.back {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.3s ease;
+    }
+    button.back:hover {
+        transform: scale(1.05);
+    }
+    footer {
+        background: linear-gradient(135deg, #d7a683, #f8d3e1);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 40px;
+    }
+    footer .social-icons a img {
+        width: 28px;
+        margin: 0 8px;
+        transition: transform 0.3s ease;
+    }
+    footer .social-icons a img:hover {
+        transform: scale(1.2);
+    }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Vogue Vault</h1>
+    <nav>
+        <ul>
+            <li><a href="Homepage.html">Home</a></li>
+            <li><a href="newpost2.html">Blogs</a></li>
+            <li><a href="categories.html">Categories</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Blog Header -->
+<section class="blog-header">
+    <h2>Footwears</h2>
+    <p>Step up your style game! Discover the latest footwear trends and styling tips for every occasion.</p>
+</section>
+
+<!-- Blog Content -->
+<section class="blog-content">
+    <img src="https://bl-i.thgim.com/public/migration_catalog/article18021289.ece/alternates/LANDSCAPE_1200/sbtb29_shoes_LV4.jpg" alt="Footwears">
+
+    <h3>Step 1: Know Your Occasion</h3>
+    <p>Choose shoes according to the occasion. Casual outings require comfortable sneakers, while formal events call for elegant heels or loafers.</p>
+
+    <h3>Step 2: Mix Colors and Textures</h3>
+    <p>Experiment with colors and textures to complement your outfit. Neutral tones are versatile, while vibrant shades make a statement.</p>
+
+    <h3>Step 3: Prioritize Comfort</h3>
+    <p>Fashion is nothing without comfort. Ensure the shoes provide proper support and are wearable for long periods.</p>
+
+    <h3>Step 4: Accessorize Shoes</h3>
+    <p>Enhance your footwear with stylish socks, shoe clips, or laces to elevate your look subtly.</p>
+
+    <h3>Step 5: Maintain and Clean</h3>
+    <p>Keep your shoes clean and well-maintained to preserve their appearance and longevity.</p>
+
+    <button class="back" onclick="goBack()">← Back to Home</button>
+</section>
+
+<!-- Footer -->
+<footer>
+    <h2>Vogue Vault</h2>
+    <p>Your stylish destination for fashion, beauty & lifestyle trends.</p>
+    <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="Pinterest"></a>
+    </div>
+    <p>&copy; 2025 Vogue Vault | All Rights Reserved</p>
+</footer>
+
+<script>
+    function goBack() {
+        window.location.href = 'Homepage.html';
+    }
+</script>
+
+</body>
+</html>
