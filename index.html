@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vogue Vault - Blogging Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -19,12 +21,18 @@
         }
 
         header {
-            background: #f8d3e1;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      position: fixed;     
+      top: 0;              
+      left: 0;
+      width: 100%;        
+      background: #f8d3e1;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;       
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    }
 
         header h1 {
             font-size: 24px;
@@ -46,19 +54,32 @@
         /* Hero Section */
         .hero {
             position: relative;
-            background: url('https://images.unsplash.com/flagged/photo-1570733117311-d990c3816c47?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
             height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: white; /* This will be overridden by inline styles, but good default */
             text-align: center;
+            overflow: hidden; /* Ensure pseudo-element doesn't overflow */
+        }
+
+        /* Overlay for background image opacity */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/flagged/photo-1570733117311-d990c3816c47?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            opacity: 0.6; /* Adjust this value (0.0 to 1.0) to change the background image's opacity */
+            z-index: 0; /* Ensure it's behind the text and button */
         }
 
         .hero h2, .hero p, .hero button {
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Keep text and button above the overlay */
         }
 
         .hero h2 {
@@ -146,6 +167,10 @@
             height: 200px;
             object-fit: cover;
         }
+        .blog-card a {
+        text-decoration: none;
+        color: black; /* Changed to black to match the original style */
+}
 
         /* Scrollable Gallery */
         .scroll-gallery {
@@ -215,7 +240,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <h1>Vogue Vault</h1>
         <nav>
@@ -231,29 +255,26 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <h2 style="color: black;">Welcome to Vogue Vault</h2>
         <p style="color: black;">Your stylish destination for fashion, beauty, and lifestyle blogs</p>
         <a href="Categories.html"><button>Explore Now</button></a>
     </section>
 
-    <!-- Categories -->
-    <section class="categories">
-        <div style="color: black;">New Posts</div>
-        <div>Trending</div>
-        <div>Tips & Tricks</div>
-        <div>Lifestyle</div>
-        <div>Beauty Hacks</div>
-    </section>
+  <section class="categories">
+  <div><i class="fa-solid fa-star"></i> New Posts</div>
+  <div><i class="fa-solid fa-fire"></i> Trending</div>
+  <div><i class="fa-solid fa-lightbulb"></i> Tips & Tricks</div>
+  <div><i class="fa-solid fa-leaf"></i> Lifestyle</div>
+  <div><i class="fa-solid fa-wand-magic-sparkles"></i> Beauty Hacks</div>
+</section>
 
-    <!-- Featured Blogs -->
     <section class="featured">
         <h3>Featured Blogs</h3>
         <div class="blog-grid">
             <div class="blog-card">
                 <a href="WardrobeGoals.html">
-                <img src="https://thumbs.dreamstime.com/b/stylish-wardrobe-filled-pastel-pink-dresses-shoes-pouf-all-clothing-hangs-neatly-hangers-closet-341188136.jpg" alt="Blog 1">
+                <img src="https://plus.unsplash.com/premium_photo-1664202526535-c01e4b0c42b7?q=80&w=687&auto=format" alt="Blog 1">
                 <h4>Wardrobe Goals</h4>
                 </a>
             </div>
@@ -265,14 +286,13 @@
             </div>
             <div class="blog-card">
                 <a href="BeautySkincare.html">
-                <img src="https://i.pinimg.com/170x/12/41/eb/1241eb6b7b3b86c3efb3ccc9bb861d51.jpg" alt="Blog 3">
+                <img src="https://www.shankara.in/cdn/shop/articles/13_Skincare_Tips_for_Dry_Skin___From_Cleansing_to_Moisturizing.jpg?v=1726823781" alt="Blog 3">
                 <h4>Beauty and Skincare</h4>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Scrollable Gallery -->
     <section class="scroll-gallery">
         <div class="gallery-item">
             <a href="DesktoDinner.html"><img src="https://assets.vogue.com/photos/5c9d068cd52c962e43a2b4a2/master/w_2560%2Cc_limit/00-vw-easter-pastels.jpg" alt="From Desk to Dinner"></a>
@@ -305,7 +325,6 @@
         
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <h2>Vogue Vault</h2>
