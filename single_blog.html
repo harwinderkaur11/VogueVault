@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vogue Vault - Blogging Platform</title>
+  <link rel="stylesheet" href="single_blog.css">
+</head>
+<body>
+  <header>Vogue Vault &nbsp&nbsp | &nbsp&nbsp Blog Post</header>
+
+  <div class="container">
+    <div style="color:grey">By Harshita | 28 Aug, 2025</div> <br>
+
+    <div class="blog-content">
+      <h2>The Elegance of Pastels in Modern Fashion</h2>
+      <p id="textToCopy">Pastel shades bring a timeless elegance to everyday outfits. From rose pinks to soft peaches, these tones create a chic and soothing vibe that never goes out of style...
+      </p>
+
+      <div style="text-align: right">
+        <span class="like" id="likeText">♡</span>
+        <span class="save" id="saveText">☆</span>
+        <span class="copy" id="copyText">▢</span>
+      </div>
+    </div>
+
+    <div class="social-share">
+      <button>Share on Twitter</button>
+      <button>Share on Instagram</button>
+    </div>
+
+    <button class="like-btn" id="likeBtn">♡ Like</button>
+
+    <div>
+      <br><h3><center>Comments</center></h3>
+      <div class="comment-box">
+        <textarea id="commentInput" placeholder="Add a comment..."></textarea>
+        <button onclick="addComment()">Post</button>
+      </div>
+      <div class="comment-list" id="commentList"></div><br><br>
+    </div>
+
+    <div class="related-posts">
+      <div class="related-posts">
+        <h3>Related Posts</h3>
+
+  <div class="blog-grid">
+    <div class="blog-card">
+      <a href="WardrobeGoals.html">
+        <img src="https://thumbs.dreamstime.com/b/stylish-wardrobe-filled-pastel-pink-dresses-shoes-pouf-all-clothing-hangs-neatly-hangers-closet-341188136.jpg" alt="Blog 1">
+        <h4>Wardrobe Goals</h4>
+      </a>
+    </div>
+
+    <div class="blog-card">
+      <a href="Hairstyles2.html">
+        <img src="https://media.istockphoto.com/photos/beauty-portrait-hairstyle-picture-id526023845?k=6&m=526023845&s=612x612&w=0&h=Yszqp1HG4_4sRexzcDdhesU9eiIxFPjQ4_gERaR3ouQ=" alt="Blog 2">
+        <h4>Trendy Hairstyles You Must Try</h4>
+      </a>
+    </div>
+
+    <div class="blog-card">
+      <a href="BeautySkincare.html">
+        <img src="https://i.pinimg.com/170x/12/41/eb/1241eb6b7b3b86c3efb3ccc9bb861d51.jpg" alt="Blog 3">
+        <h4>Beauty and Skincare</h4>
+      </a>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <script>
+
+    //liking the post
+    document.getElementById('likeText').addEventListener('click', () => {
+      likeText.classList.toggle('liked');
+      likeText.textContent = likeText.classList.contains('liked') ? '❤' : '♡';
+    });
+
+    //saving the post
+    document.getElementById('saveText').addEventListener('click', () => {
+      saveText.classList.toggle('saved');
+      saveText.textContent = saveText.classList.contains('saved') ? '⭐' : '☆';
+    });
+
+    // copying the blog text
+  const copyText = document.getElementById('copyText');
+  const textToCopy = document.getElementById('textToCopy');
+
+  copyText.addEventListener('click', () => {
+    navigator.clipboard.writeText(textToCopy.textContent).then(() => {
+      copyText.textContent = "✅";
+      setTimeout(() => {
+        copyText.textContent = "▢";
+      }, 2000);
+    })
+  });
+
+    //like button toggle
+    const likeBtn = document.getElementById('likeBtn');
+    likeBtn.addEventListener('click', () => {
+      likeBtn.classList.toggle('liked');
+      likeBtn.textContent = likeBtn.classList.contains('liked') ? '❤ Liked' : '♡ Like';
+    });
+
+    //add comment
+    function addComment() {
+      const input = document.getElementById('commentInput');
+      const list = document.getElementById('commentList');
+      if (input.value.trim() !== "") {
+        const comment = document.createElement('div');
+        comment.className = "comment";
+        comment.textContent = input.value;
+        list.appendChild(comment);
+        input.value = "";
+      }
+    }
+
+</script>
+</body>
+</html>
