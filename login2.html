@@ -1,134 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In - Vogue Vault</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: url('https://images.template.net/75381/Free-Pastel-Iphone-Background-01-1.jpg') no-repeat center center/cover;
-            position: relative;
-        }
-        /* Overlay for better text visibility */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 182, 193, 0.35); /* Pastel pink overlay */
-            z-index: 1;
-        }
-        .login-container {
-            position: relative;
-            z-index: 2;
-            max-width: 400px;
-            width: 90%;
-            margin: 20px auto;
-            background: #f8d3e1;
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(255,182,193,0.3);
-            padding: 40px 30px;
-        }
-        .login-container h2 {
-            text-align: center;
-            color: #ff69b4;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        .login-container p {
-            text-align: center;
-            color: #555;
-            margin-bottom: 25px;
-        }
-        .login-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .login-form input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 18px;
-            border: 2px solid #ffb6c1;
-            border-radius: 12px;
-            background: #fff;
-            font-size: 16px;
-            transition: border 0.3s;
-        }
-        .login-form input:focus {
-            border-color: #b49fd9;
-            outline: none;
-        }
-        .login-form button {
-            width: 100%;
-            background: #ff69b4;
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 25px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .login-form button:hover {
-            background: #b49fd9;
-        }
-        .footer-links {
-            text-align: center;
-            margin-top: 18px;
-        }
-        .footer-links a {
-            color: #ff69b4;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 0 8px;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover {
-            color: #b49fd9;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vogue Vault - Auth</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+
+body, html { 
+  height: 100%; 
+  background: #fff7f9; 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  overflow-x: hidden; 
+}
+
+/* ---------------- HEADER ---------------- */
+header {
+  width: 100vw;                 
+  background: #f8d3e1;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(255,105,180,0.2);
+  position: relative;            
+  left: 0;                      
+}
+
+header h1 {
+  font-size: 24px;
+  color: #ff69b4;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+    margin: 0;                  
+  padding: 0;                    
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ff69b4;
+}
+
+/* ---------------- AUTH CONTAINER ---------------- */
+.auth-container {
+  width: 1000px;
+  max-width: 95%;
+  height: 650px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(255,105,180,0.3);
+  position: relative;
+  transition: all 0.8s ease-in-out;
+  border-radius: 18px;
+  margin: 40px auto;
+}
+
+/* Left + Right */
+.auth-left, .auth-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.8s ease-in-out;
+  padding: 40px;
+  color: #b03060;
+}
+
+.auth-left {
+  backdrop-filter: blur(12px);
+}
+
+.auth-right {
+  background: 
+    url('https://plus.unsplash.com/premium_photo-1667520043080-53dcca77e2aa?q=80&w=687&auto=format&fit=crop') 
+    center/cover no-repeat;
+  transition: transform 1s ease;
+}
+
+/* Forms */
+.auth-form {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  position: absolute;
+  transition: all 0.8s ease-in-out;
+}
+
+.auth-form h2 {
+  margin-bottom: 15px;
+  font-size: 32px;
+  color: #ff69b4;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.auth-form p {
+  margin-bottom: 25px;
+  color: #cc6699;
+}
+
+/* Inputs */
+.auth-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 2px solid #ffc1d6;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  background: #fff0f6;
+  color: #b03060;
+  transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.auth-form input:focus {
+  border-color: #ff69b4;
+  transform: scale(1.02);
+  box-shadow: 0 0 8px rgba(255,105,180,0.4);
+}
+
+/* Buttons */
+.auth-form button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255,105,180,0.3);
+  transition: all 0.3s;
+}
+
+.auth-form button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+}
+
+/* Switch link */
+.switch-link {
+  margin-top: 15px;
+  color: #ff69b4;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.switch-link:hover { color: #b03060; }
+
+/* Sliding animation */
+.auth-container.signup-mode .auth-left { transform: translateX(100%); }
+.auth-container.signup-mode .auth-right { transform: translateX(-100%); }
+
+.auth-container.signup-mode #loginForm { opacity: 0; pointer-events: none; }
+.auth-container.signup-mode #signupForm { opacity: 1; pointer-events: all; }
+
+#signupForm { opacity: 0; pointer-events: none; }
+
+/* Mobile */
+@media(max-width: 768px) {
+  header { flex-direction: column; align-items: flex-start; }
+  nav ul { flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+  .auth-container { flex-direction: column; height: auto; }
+  .auth-left, .auth-right { height: 400px; width: 100%; transform: none; padding: 20px; }
+  .auth-container.signup-mode .auth-left, .auth-container.signup-mode .auth-right { transform: none; }
+  #signupForm, #loginForm { position: relative; opacity: 1; pointer-events: all; }
+  .auth-form { position: relative; max-width: 100%; }
+}
+</style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Log In</h2>
-        <p>Welcome back to Vogue Vault</p>
-        <form class="login-form" id="loginForm">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+<!-- Header -->
+<header>
+  <h1>Vogue Vault</h1>
+  <nav>
+    <ul>
+      <li><a href="newpost2.html">Blogs</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="author.html">Author</a></li>
+      <li><a href="signup.html">Signup</a></li>
+      <li><a href="user_dashboard.html">Profile</a></li>
+    </ul>
+  </nav>
+</header>
 
-            <button type="submit">Log In</button>
-        </form>
-        <div class="footer-links">
-            <span>Don't have an account?</span>
-            <a href="signup.html">Sign Up</a>
-        </div>
-    </div>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            if (!email || !password) {
-                alert('Please enter both email and password.');
-                e.preventDefault();
-            }
-        });
-    </script>
+<!-- Auth Container -->
+<div class="auth-container" id="authContainer">
+
+  <!-- Left -->
+  <div class="auth-left">
+    <!-- Login -->
+    <form class="auth-form" id="loginForm">
+      <h2>Log In</h2>
+      <p>Welcome back to Vogue Vault</p>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button>Log In</button>
+      <div class="switch-link" id="toSignup">Don't have an account? Sign Up</div>
+    </form>
+
+    <!-- Signup -->
+    <form class="auth-form" id="signupForm">
+      <h2>Sign Up</h2>
+      <p>Create your account</p>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="date" required>
+      <input type="password" placeholder="Password" required>
+      <button>Create Account</button>
+      <div class="switch-link" id="toLogin">Already have an account? Log In</div>
+    </form>
+  </div>
+
+  <!-- Right -->
+  <div class="auth-right"></div>
+
+</div>
+
+<script>
+const authContainer = document.getElementById('authContainer');
+const toSignup = document.getElementById('toSignup');
+const toLogin = document.getElementById('toLogin');
+
+toSignup.addEventListener('click', () => authContainer.classList.add('signup-mode'));
+toLogin.addEventListener('click', () => authContainer.classList.remove('signup-mode'));
+</script>
+
 </body>
 </html>
